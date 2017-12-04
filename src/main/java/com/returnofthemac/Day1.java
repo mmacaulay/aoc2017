@@ -1,36 +1,19 @@
 package com.returnofthemac;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Day1 implements FileInput {
-    private String data;
-    private String mode;
-
-    public Day1(String mode) {
-        this.mode = mode;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public void loadInputFile() throws IOException, URISyntaxException {
-        this.setData(this.readLines("day1.txt").findFirst().orElse("No input!"));
+public class Day1 extends Base implements FileInput {
+    public Day1(String part) {
+        super(part);
     }
 
     public boolean considerDigit(int index, List<String> chars) {
         String c = chars.get(index);
         String next= "";
-        if (this.mode == "part2") {
+        if (this.part == "part2") {
             int nextIndex = index + ((chars.size() - 1) / 2);
             if (nextIndex > chars.size() - 2) {
                 nextIndex -= (chars.size() - 1);
@@ -57,13 +40,5 @@ public class Day1 implements FileInput {
                 .filter(i -> considerDigit(i, chars))
                 .map(i -> Integer.parseInt(chars.get(i)))
                 .reduce(0, (acc, n) -> acc + n);
-    }
-
-    public String getMode() {
-        return mode;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
     }
 }

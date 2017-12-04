@@ -12,4 +12,8 @@ public interface FileInput {
         Path path = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
         return Files.lines(path);
     }
+
+    default String loadInputFile(String filename) throws IOException, URISyntaxException {
+        return this.readLines(filename).findFirst().orElse("No input!");
+    }
 }
