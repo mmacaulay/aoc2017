@@ -3,8 +3,6 @@ package com.returnofthemac;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class Day2Test {
@@ -15,9 +13,15 @@ public class Day2Test {
             "2 4 6 8"
     };
 
+    String[] rows2 = new String[] {
+            "5 9 2 8",
+            "9 4 7 3",
+            "3 8 6 5"
+    };
+
     @Before
     public void setUp() throws Exception {
-        day2 = new Day2();
+        day2 = new Day2("part1");
     }
 
     @Test
@@ -33,5 +37,11 @@ public class Day2Test {
     @Test
     public void calcChecksum() {
         assertThat(day2.calcChecksum(rows)).isEqualTo(18);
+    }
+
+    @Test
+    public void part2() {
+        day2.setPart("part2");
+        assertThat(day2.calcChecksum(rows2)).isEqualTo(9);
     }
 }
