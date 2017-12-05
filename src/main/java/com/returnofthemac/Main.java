@@ -6,12 +6,10 @@ import java.net.URISyntaxException;
 public class Main {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        Day2 day2 = new Day2("part2");
+        Day3 day3 = new Day3("part1");
 
-        System.out.println(day2.getData());
+        day3.generateGrid(571);
 
-        String[] lines = day2.readLines("day2.txt").toArray(String[]::new);
-
-        System.out.println(day2.calcChecksum(lines));
+        System.out.println(day3.manhattanDistance(325489));
     }
 }
