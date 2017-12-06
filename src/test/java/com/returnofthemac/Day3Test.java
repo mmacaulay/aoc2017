@@ -11,7 +11,7 @@ public class Day3Test {
     @Before
     public void setUp() throws Exception {
         day3 = new Day3("part1");
-//        day3.generateGrid(32);
+        day3.generateCoordsMap(32);
     }
 
     @Test
@@ -22,16 +22,21 @@ public class Day3Test {
         assertThat(grid[0][1]).isEqualTo(4);
         assertThat(grid[1][1]).isEqualTo(1);
         assertThat(grid[2][2]).isEqualTo(9);
-//        Coordinate[] coordsMap = day3.getCoordsMap();
-//        assertThat(coordsMap[0].equals(new Coordinate(0, 0))).isTrue();
-//        assertThat(coordsMap[1].equals(new Coordinate(1, 0))).isTrue();
-//        assertThat(coordsMap[2].equals(new Coordinate(1, 1))).isTrue();
-//        assertThat(coordsMap[3].equals(new Coordinate(0, 1))).isTrue();
-//        assertThat(coordsMap[4].equals(new Coordinate(-1, 1))).isTrue();
-//        assertThat(coordsMap[5].equals(new Coordinate(-1, 0))).isTrue();
-//        assertThat(coordsMap[6].equals(new Coordinate(-1, -1))).isTrue();
-//        assertThat(coordsMap[7].equals(new Coordinate(0, -1))).isTrue();
-//        assertThat(coordsMap[8].equals(new Coordinate(1, -1))).isTrue();
+    }
+
+    @Test
+    public void testGenerateCoordsMap() {
+        day3.generateCoordsMap(3);
+        Coordinate[] coordsMap = day3.getCoordsMap();
+        assertThat(coordsMap[0].equals(new Coordinate(0, 0))).isTrue();
+        assertThat(coordsMap[1].equals(new Coordinate(1, 0))).isTrue();
+        assertThat(coordsMap[2].equals(new Coordinate(1, 1))).isTrue();
+        assertThat(coordsMap[3].equals(new Coordinate(0, 1))).isTrue();
+        assertThat(coordsMap[4].equals(new Coordinate(-1, 1))).isTrue();
+        assertThat(coordsMap[5].equals(new Coordinate(-1, 0))).isTrue();
+        assertThat(coordsMap[6].equals(new Coordinate(-1, -1))).isTrue();
+        assertThat(coordsMap[7].equals(new Coordinate(0, -1))).isTrue();
+        assertThat(coordsMap[8].equals(new Coordinate(1, -1))).isTrue();
     }
 
     @Test

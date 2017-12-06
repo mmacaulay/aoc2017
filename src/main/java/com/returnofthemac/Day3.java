@@ -38,7 +38,6 @@ public class Day3 extends Base {
 
     public void generateGrid(int size) {
         this.grid = new int[size][size];
-        this.coordsMap = new Coordinate[size * size];
 
         int maxValue = size * size;
         int currentRadius = (size / 2); // find middle, odd numbers lose their decimal part
@@ -49,9 +48,8 @@ public class Day3 extends Base {
 
         while(value <= maxValue) {
             grid[location.y][location.x] = value;
-            coordsMap[value - 1] = location;
 
-            System.out.println(String.format("x: %s, y: %s, value: %s, dir: %s", location.x, location.y, value, direction));
+//            System.out.println(String.format("x: %s, y: %s, value: %s, dir: %s", location.x, location.y, value, direction));
 
             switch(direction) {
                 case "left":
@@ -93,12 +91,59 @@ public class Day3 extends Base {
         }
     }
 
-    public int manhattanDistance(int value) {
-        int start = 1, steps = 0;
-        Coordinate location = new Coordinate(middle.x, middle.y);
-        while(start < value) {
+    public void generateCoordsMap(int size) {
+        this.coordsMap = new Coordinate[size * size];
+        int currentRadius = 1, value = 1, maxValue = size * size;
+        Coordinate location = new Coordinate(0, 0);
+        String direction = "right";
 
+        while(value <= maxValue) {
+            coordsMap[value - 1] = new Coordinate(location.x, location.y);
+
+//            System.out.println(String.format("x: %s, y: %s, value: %s, dir: %s", location.x, location.y, value, direction));
+
+            switch(direction) {
+                case "left":
+                    if (location.x > -currentRadius) {
+                        location.x--;
+                    } else {
+                        direction = "down";
+                        location.y--;
+                    }
+                    break;
+                case "right":
+                    if (location.x < currentRadius) {
+                        location.x++;
+                    } else {
+                        direction = "up";
+                        location.y++;
+                    }
+                    break;
+                case "up":
+                    if (location.y < currentRadius) {
+                        location.y++;
+                    } else {
+                        direction = "left";
+                        location.x--;
+                    }
+                    break;
+                case "down":
+                    if (location.y > -currentRadius) {
+                        location.y--;
+                    } else {
+                        direction = "right";
+                        currentRadius++;
+                        location.x++;
+                    }
+                    break;
+            }
+
+            value++;
         }
-        return steps;
+    }
+
+    public int manhattanDistance(int value) {
+        Coordinate coordinate = this.coordsMap[value - 1];
+        return Math.abs(coordinate.x) + Math.abs(coordinate.y);
     }
 }

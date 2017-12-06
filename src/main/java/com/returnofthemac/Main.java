@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
         Day3 day3 = new Day3("part1");
 
-        day3.generateGrid(571);
+        day3.generateCoordsMap(571);
 
         System.out.println(day3.manhattanDistance(325489));
     }
