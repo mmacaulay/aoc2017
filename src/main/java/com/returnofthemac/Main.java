@@ -11,5 +11,6 @@ public class Main {
         day3.generateCoordsMap(571);
 
         System.out.println(day3.manhattanDistance(325489));
+        System.out.println(day3.stressTest(325489));
     }
 }

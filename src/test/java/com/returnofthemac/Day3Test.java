@@ -15,16 +15,6 @@ public class Day3Test {
     }
 
     @Test
-    public void testGenerateGrid() {
-        day3.generateGrid(3);
-        int[][] grid = day3.getGrid();
-        assertThat(grid[0][0]).isEqualTo(5);
-        assertThat(grid[0][1]).isEqualTo(4);
-        assertThat(grid[1][1]).isEqualTo(1);
-        assertThat(grid[2][2]).isEqualTo(9);
-    }
-
-    @Test
     public void testGenerateCoordsMap() {
         day3.generateCoordsMap(3);
         Coordinate[] coordsMap = day3.getCoordsMap();
@@ -57,5 +47,20 @@ public class Day3Test {
     @Test
     public void testEx4() {
         assertThat(day3.manhattanDistance(1024)).isEqualTo(31);
+    }
+
+    @Test
+    public void testPt2Ex1() {
+        assertThat(day3.stressTest(1)).isEqualTo(2);
+    }
+
+    @Test
+    public void testPt2Ex3() {
+        assertThat(day3.stressTest(2)).isEqualTo(4);
+    }
+
+    @Test
+    public void testPt2Ex4() {
+        assertThat(day3.stressTest(4)).isEqualTo(5);
     }
 }
