@@ -1,4 +1,4 @@
-package com.returnofthemac;
+package aoc2017;
 
 import org.junit.Before;
 import org.junit.Test;

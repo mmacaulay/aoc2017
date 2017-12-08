@@ -1,4 +1,4 @@
-package com.returnofthemac;
+package aoc2017;
 
 public class Coordinate {
     public int x;

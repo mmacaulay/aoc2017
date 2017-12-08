@@ -1,4 +1,4 @@
-package com.returnofthemac;
+package aoc2017;
 
 import java.util.Arrays;
 import java.util.Collections;

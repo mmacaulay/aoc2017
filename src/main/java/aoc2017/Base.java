@@ -1,4 +1,4 @@
-package com.returnofthemac;
+package aoc2017;
 
 public abstract class Base {
     protected String data;
