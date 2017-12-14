@@ -43,7 +43,7 @@ const testData = [{
   weight: 61
 }, {
   name: 'cntj',
-  weight: 67
+  weight: 57
 }]
 
 const realData = lines.map(line => {
@@ -103,8 +103,39 @@ function makeTree (nodes) {
   return tree
 }
 
+function calcWeight (root) {
+  if (!root.children) return root.weight
+  return Object.keys(root.children).map(key => {
+    return calcWeight(root.children[key])
+  }).reduce((a, b) => a + b) + root.weight
+}
+
+function checkTowerWeights (root) {
+  if (!root.children) return
+  const childWeights = Object.keys(root.children).map(name => {
+    return {
+      name,
+      weight: root.children[name].weight,
+      towerWeight: calcWeight(root.children[name])
+    }
+  })
+  const towerWeights = childWeights.map(c => c.towerWeight)
+  if (Math.max(...towerWeights) !== Math.min(...towerWeights)) {
+    console.log(`Uneven weights for node ${root.name}!`)
+    console.log(childWeights)
+  }
+
+  Object.keys(root.children).forEach(key => checkTowerWeights(root.children[key]))
+}
+
 const testTree = makeTree(testData)
-console.log(`Test root: ${Object.keys(testTree)}`)
+const testRootKey = Object.keys(testTree)[0]
+console.log(`Test root: ${testRootKey}`)
+console.log(`Test tower weights:`)
+checkTowerWeights(testTree[testRootKey])
 
 const realTree = makeTree(realData)
-console.log(`Real root: ${Object.keys(realTree)}`)
+const realRootKey = Object.keys(realTree)[0]
+console.log(`Real root: ${realRootKey}`)
+console.log(`Real tower weights:`)
+checkTowerWeights(realTree[realRootKey])
