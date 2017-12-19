@@ -11,11 +11,13 @@ int group_score(char *stream) {
   unsigned depth = 0;
   bool garbage = false;
   bool cancel = false;
+  unsigned garbage_count = 0;
 
   while(*c) {
     if (cancel) {
       cancel = false;
     } else {
+      if (garbage && *c != '!' && *c != '>') garbage_count++;
       switch (*c) {
         case '!':
           cancel = true;
@@ -46,10 +48,12 @@ int group_score(char *stream) {
     c++;
   }
 
+  printf("[garbage]: %d\n", garbage_count);
   return score;
 }
 
 void tests() {
+  printf("Test data\n\n");
   printf("[stream] {}: expected: 1, actual: %d\n", group_score("{}"));
   printf("[stream] {{{}}}: expected: 6, actual: %d\n", group_score("{{{}}}"));
   printf("[stream] {{},{}}: expected: 5, actual: %d\n", group_score("{{},{}}"));
@@ -67,7 +71,7 @@ void real_data() {
   fgets(data, BUFFER_SIZE, fp);
   fclose(fp);
 
-  printf("Real data:\n\n");
+  printf("\n\nReal data:\n\n");
   printf("[stream]: %d\n", group_score(data));
 }
 
