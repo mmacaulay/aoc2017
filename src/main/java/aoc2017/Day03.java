@@ -2,10 +2,10 @@ package aoc2017;
 
 import java.util.stream.IntStream;
 
-public class Day3 extends Base {
+public class Day03 extends Base {
     private Coordinate[] coordsMap;
 
-    public Day3(String part) {
+    public Day03(String part) {
         super(part);
         coordsMap = new Coordinate[0];
     }

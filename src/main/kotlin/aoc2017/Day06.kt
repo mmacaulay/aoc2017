@@ -1,6 +1,6 @@
 package aoc2017
 
-class Day6(initialMemory: ArrayList<Int>) {
+class Day06(initialMemory: ArrayList<Int>) {
     val memoryBanks = initialMemory.toTypedArray()
 
     fun countRedistributions(): Int {

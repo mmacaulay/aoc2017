@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day2 extends Base implements FileInput {
-    public Day2(String part) {
+public class Day02 extends Base implements FileInput {
+    public Day02(String part) {
         super(part);
     }
 

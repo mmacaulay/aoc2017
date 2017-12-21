@@ -5,12 +5,12 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class Day1Test {
-    private Day1 day1;
+public class Day01Test {
+    private Day01 day1;
 
     @Before
     public void setUp() throws Exception {
-        day1 = new Day1("part1");
+        day1 = new Day01("part1");
     }
 
     @Test
