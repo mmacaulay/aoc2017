@@ -74,15 +74,20 @@ class Day10Test(unittest.TestCase):
 
 class Day10(object):
   def __init__(self, input):
+    self.originalinput = input
+    self.reset()
+
+  def reset(self):
+    self.input = list(self.originalinput)
     self.position = 0
     self.skipsize = 0
-    self.input = input
 
   def hash(self, lengths):
     for length in lengths:
       self.knot(length)
 
   def hash2(self, lengths):
+    self.reset()
     lens = self.converttoascii(lengths) + [17, 31, 73, 47, 23]
 
     for i in range(0, 64):
