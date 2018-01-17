@@ -22,7 +22,13 @@ public class Main {
         System.out.println(day06.countRedistributions());
     }
 
+    public static void day16() throws IOException, URISyntaxException {
+        Day16.Companion.testData();
+        Day16.Companion.part1();
+        Day16.Companion.part2();
+    }
+
     public static void main(String[] args) throws IOException, URISyntaxException {
-        day6();
+        day16();
     }
 }
