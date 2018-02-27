@@ -92,5 +92,5 @@ function part1 () {
   rd.trace()
 }
 
-// test()
+test()
 part1()
