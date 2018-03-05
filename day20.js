@@ -54,8 +54,36 @@ function part1 () {
     }
   })
 
-  console.log(`Lowest acceleration is ${lowestAccel}, from index ${index}`)
+  console.log(`Part 1: lowest acceleration is ${lowestAccel}, from index ${index}`)
+}
+
+function part2 () {
+  const particles = lines.map(line => {
+    return new Particle(line)
+  })
+
+  for (let i = 0; i < 10000; i++) {
+    let coordMap = {}
+    particles.forEach((p, i) => {
+      if (p.deleted) return
+      p.tick()
+      let coordVal = `${p.position.x}-${p.position.y}-${p.position.z}`
+      if (!coordMap[coordVal]) coordMap[coordVal] = []
+      coordMap[coordVal].push(i)
+    })
+    Object.keys(coordMap).forEach(key => {
+      if (coordMap[key].length > 1) {
+        coordMap[key].forEach(index => {
+          particles[index].deleted = true
+        })
+      }
+    })
+  }
+
+  const remaining = particles.filter(p => !p.deleted)
+  console.log(`Part 2: ${remaining.length}`)
 }
 
 test()
 part1()
+part2()
