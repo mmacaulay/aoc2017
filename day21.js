@@ -465,16 +465,23 @@ function enhance (pattern) {
   }))
 }
 
-function part1 () {
+function run () {
   let pattern = startPattern.slice()
+  let part1 = null
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 18; i++) {
     pattern = enhance(pattern)
+    if (i === 4) part1 = pattern
   }
   console.log('Part 1 =>')
+  console.log('Final pattern:', part1)
+  console.log('Pixels on: ', countOnPixels(part1))
+
+  console.log('Part 2 =>')
   console.log('Final pattern:', pattern)
   console.log('Pixels on: ', countOnPixels(pattern))
 }
 
 // test()
-part1()
+run()
+
