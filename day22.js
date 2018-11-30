@@ -2,6 +2,11 @@ const fs = require('fs')
 const assert = require('assert')
 const realMap = fs.readFileSync('day22.txt', { encoding: 'utf8' }).split('\n')
 
+const CLEAN = '.'
+const INFECTED = '#'
+const WEAKENED = 'W'
+const FLAGGED = 'F'
+
 const testMap = [
   '..#',
   '#..',
@@ -74,26 +79,59 @@ class Virus {
   }
 
   clean () {
-    this.grid[this.position.x][this.position.y] = '.'
+    this.grid[this.position.x][this.position.y] = CLEAN
   }
 
   infect () {
-    this.grid[this.position.x][this.position.y] = '#'
+    this.grid[this.position.x][this.position.y] = INFECTED
     this.infectionCount++
+  }
+
+  weaken () {
+    this.grid[this.position.x][this.position.y] = WEAKENED
+  }
+
+  flag () {
+    this.grid[this.position.x][this.position.y] = FLAGGED
   }
 
   burst (count) {
     for (let i = 0; i < count; i++) {
-      // current position infected
-      if (this.grid[this.position.x][this.position.y] === '#') {
-        this.rotate('right')
-        this.clean()
-    
-      // current position clean
-      } else {
-        this.rotate('left')
-        this.infect()
+      const currentNode = this.grid[this.position.x][this.position.y]
+
+      // Part 2
+      switch (currentNode) {
+        case INFECTED:
+          this.rotate('right')
+          this.flag()
+          break
+        case CLEAN:
+          this.rotate('left')
+          this.weaken()
+          break
+        case WEAKENED:
+          this.infect()
+          break
+        case FLAGGED:
+          this.clean()
+          
+          // reverse
+          this.rotate('right')
+          this.rotate('right')
+          break
       }
+
+      // Part 1
+      // // current position infected
+      // if (this.grid[this.position.x][this.position.y] === INFECTED) {
+      //   this.rotate('right')
+      //   this.clean()
+    
+      // // current position clean
+      // } else {
+      //   this.rotate('left')
+      //   this.infect()
+      // }
       this.move()
     }
   }
@@ -128,7 +166,7 @@ function part1 () {
   const grid = createGrid(realMap, 10000)
   const virus = new Virus(grid)
 
-  virus.burst(10000)
+  virus.burst(10000000)
   console.log(`infection count`, virus.infectionCount)
 }
 
